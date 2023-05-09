@@ -1,0 +1,15 @@
+.split-component {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+  
+.split-component .gutter {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+}
+.split-component .gutter:hover {
+  cursor: col-resize;
+  /* background-color: ; */
+}
