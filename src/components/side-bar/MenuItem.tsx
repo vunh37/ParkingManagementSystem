@@ -1,11 +1,13 @@
 import React from "react";
 import SystemDateTime from "./SystemDateTime";
+import path from "path";
 
 export interface IMenuItemProp {
   iconString: string;
   title: string;
   isExpand: boolean;
   children: IMenuItemProp[];
+  path: string;
   showMenuTitle: boolean;
 }
 
@@ -14,6 +16,7 @@ const MenuItem: React.FC<any> = ({
   title,
   isExpand,
   children,
+  path,
   showMenuTitle,
 }: IMenuItemProp) => {
   return (
@@ -23,7 +26,7 @@ const MenuItem: React.FC<any> = ({
           <i className={iconString}></i>
         </div>
         {/* <p></p> */}
-        {showMenuTitle && <div className="menu-title">{title}</div>}
+        {showMenuTitle && <div className="menu-title"><a href={path}>{title}</a></div>}
       </div>
       <div className="menu-item-children">
         {children.map((item: IMenuItemProp, index: number) => {
