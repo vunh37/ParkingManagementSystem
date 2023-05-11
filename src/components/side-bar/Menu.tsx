@@ -12,6 +12,7 @@ const MENU_ITEMS_LIST: any[] = [
       //   isExpand: true,
       // },
     ],
+    path: "/user-management/employeeslist",
     title: "Quản lí nhân viên",
     isExpand: true,
   },
