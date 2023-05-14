@@ -5,14 +5,29 @@ const MENU_ITEMS_LIST: any[] = [
   {
     iconString: "fa-solid fa-people-group",
     children: [
-      // {
-      //   iconString: "icon",
-      //   children: [],
-      //   title: "quản lí nhân viên",
-      //   isExpand: true,
-      // },
+      {
+        iconString: "icon",
+        children: [],
+        title: "Danh sach nhan vien",
+        isExpand: true,
+        path: "/parking-management/employee-list",
+      },
+      {
+        iconString: "icon",
+        children: [],
+        title: "Them nhan vien nhan vien",
+        isExpand: true,
+        path: "/parking-management/employee-list",
+      },
+      {
+        iconString: "icon",
+        children: [],
+        title: "Cap nhap nhan vien",
+        isExpand: true,
+        path: "/parking-management/employeeslist",
+      },
     ],
-    path: "/user-management/employeeslist",
+    // path: "/parking-management/employeeslist",
     title: "Quản lí nhân viên",
     isExpand: true,
   },
@@ -50,7 +65,13 @@ const Menu: React.FC<any> = (props: IMenuProps) => {
   return (
     <div className="menu">
       {MENU_ITEMS_LIST.map((item: IMenuItemProp) => {
-        return <MenuItem {...item} showMenuTitle={props.showMenuTitle} />;
+        return (
+          <MenuItem
+            key={item.title}
+            {...item}
+            showMenuTitle={props.showMenuTitle}
+          />
+        );
       })}
     </div>
   );

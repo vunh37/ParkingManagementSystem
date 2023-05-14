@@ -26,11 +26,13 @@ const MenuItem: React.FC<any> = ({
           <i className={iconString}></i>
         </div>
         {/* <p></p> */}
-        {showMenuTitle && <div className="menu-title"><a href={path}>{title}</a></div>}
+        <div className="menu-title">
+          <a href={path}>{title}</a>
+        </div>
       </div>
       <div className="menu-item-children">
         {children.map((item: IMenuItemProp, index: number) => {
-          return <MenuItem {...item}></MenuItem>;
+          return <MenuItem key={item.title + index} {...item}></MenuItem>;
         })}
       </div>
     </div>
