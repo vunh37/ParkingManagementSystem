@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const MainContent: React.FC<any> = (props: any) => {
   return (
     <div className="main-content">
-      <HeaderBar />
+      {/* <HeaderBar /> */}
       <div id="detail">
         <Outlet />
       </div>

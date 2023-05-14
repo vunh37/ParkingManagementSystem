@@ -1,34 +1,69 @@
-import { useState } from 'react';
-import './Login.scss';
+import { useState } from "react";
+import "./Login.scss";
+import CustomInput from "../common/CustomInput";
+import { ILoginInfor } from "../constant/interfaces";
+import {
+  LOGIN_INFOR_DEFAULT,
+  REGEX_LOGIN_USER_NAME,
+} from "../constant/constants";
+import { userInfo } from "os";
 
-interface LoginProps {
-  onLogin: (username: string, password: string) => void;
-}
-
-const Login = ({ onLogin }: LoginProps) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const Login = (props: any) => {
+  const [loginInfor, setLoginInfor] = useState<ILoginInfor>({
+    ...LOGIN_INFOR_DEFAULT,
+  });
+  const [loginErrorMessage, setLoginErrorMessage] = useState<ILoginInfor>({
+    ...LOGIN_INFOR_DEFAULT,
+  });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onLogin(username, password);
+    const errorMsg: ILoginInfor = { userName: "", password: "" };
+    const { userName, password } = loginInfor;
+    if (userName == "" || password == "") {
+      alert("Xin vui lòng nhập đầy đủ Tên đăng nhập và mật khẩu");
+      return;
+    }
+
+    if (!REGEX_LOGIN_USER_NAME.test(userName)) {
+      alert("Tên không được chứa kí tự đặc biệt!");
+      return;
+    }
+  };
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setLoginInfor({ ...loginInfor, [name]: value });
   };
 
   return (
     <div className="login-container">
       <form onSubmit={handleSubmit} className="login-form">
-        <div><h1>Login</h1></div>
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} className="form-control" />
+        <div>
+          <h1>Login</h1>
         </div>
+        <CustomInput
+          value={loginInfor.userName}
+          label="UserName"
+          onChangeHandle={handleChange}
+          name="userName"
+        />
 
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" />
-        </div>
+        <CustomInput
+          value={loginInfor.password}
+          label="Password"
+          onChangeHandle={handleChange}
+          name="password"
+          type="password"
+        />
 
-        <button type="submit" className="btn btn-primary" style={{ display: 'block', margin: '0 auto' }}>Login</button>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          style={{ display: "block", margin: "0 auto" }}
+        >
+          Login
+        </button>
       </form>
     </div>
   );
