@@ -1,27 +1,51 @@
 export interface ICustomInput {
-    name: string,
-    value: string,
-    type?: string,
-    label: string,
-    onChangeHandle: (e: any) => void,
+  name: string;
+  value: string;
+  type?: string;
+  label: string;
+  disable?: boolean;
+  onChangeHandle: (e: any) => void;
+}
+
+export interface ICustomRadioInput {
+  name: string;
+  value: string;
+  label: string;
+  items: string[];
+  onChangeHandle: (e: any) => void;
 }
 
 export interface ICustomTable {
-    headers: string[],
-    data: any[],
-    deleteFunction?: (id: number) => void,
-    showFunction?: (id: number) => void,
-    editFunction?: (id: number) => void,
+  headers: string[];
+  data: any[];
+  deleteFunction?: (id: number) => void;
+  showFunction?: (id: number) => void;
+  editFunction?: (id: number) => void;
 }
 
-
 export interface IPerson {
-    id?: number,
-    name: string,
+  id?: number;
+  name: string;
 }
 
 export interface ILoginInfor {
-    userName: string,
-    password: string,
+  userName: string;
+  password: string;
 }
 
+export interface IEmployee {
+  userName: string;
+  dateOfBirth: string;
+  address: string;
+  email: string;
+  gender: string;
+  phoneNumber: string;
+  password: string;
+  fullName: string;
+  roleName: string;
+}
+
+// export interface ITicket {
+//   ticketId: string;
+//   carPlateIn;
+// }

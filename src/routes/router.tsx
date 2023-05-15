@@ -1,10 +1,15 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import RootComponent from "./root";
 import UserManagement from "../components/user/UserManagement";
 import Login from "../components/login/Login";
 import EmployeesList from "../components/employees/EmployeesList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddEmployee from "../components/employees/AddEmployees";
+import CustomersList from "../components/customer/CustomersList";
+import AddCustomer from "../components/customer/AddCustomer";
+import Parking from "../components/parking/Parking";
+import SellTicket from "../components/ticket/SellTicket";
+import Staticstic from "../components/staticstic/Staticstic";
 
 const router = createBrowserRouter([
   {
@@ -21,39 +26,37 @@ const router = createBrowserRouter([
       },
       {
         path: "add-employee",
-        element: <AddEmployee />,
+        element: <AddEmployee mode="add" />,
+      },
+      {
+        path: "employee/:employeeId",
+        element: <AddEmployee mode="edit" />,
+      },
+      {
+        path: "customer-list",
+        element: <CustomersList />,
+      },
+      {
+        path: "add-customer",
+        element: <AddCustomer mode="add" />,
+      },
+      {
+        path: "parking",
+        element: <Parking />,
+      },
+      {
+        path: "sell-ticket",
+        element: <SellTicket />,
+      },
+      {
+        path: "statistic",
+        element: <Staticstic />,
       },
     ],
   },
   {
     path: "/",
-    element: (
-      <Login
-        onLogin={(username: string, password: string) => {
-          // Make a login API request using the provided credentials
-          fetch("/login", {
-            method: "POST",
-            body: JSON.stringify({ username, password }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-            .then((response) => {
-              if (response.ok) {
-                // If the response is successful, redirect to the user management page
-                window.location.href = "/user-management";
-              } else {
-                // If the response is not successful, show an error message
-                alert("Login failed. Please try again.");
-              }
-            })
-            .catch((error) => {
-              // If there is an error, log it to the console
-              console.error("Error logging in:", error);
-            });
-        }}
-      />
-    ),
+    element: <Login onLogin={(username: string, password: string) => {}} />,
   },
 ]);
 

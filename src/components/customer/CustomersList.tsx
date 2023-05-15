@@ -1,9 +1,7 @@
 import React from "react";
-import "./EmloyeesList.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
 import CustomTable from "../common/CustomTable";
 
-const EmployeesList = () => {
+const CustomersList = () => {
   const header = ["id", "name", "age"];
   const data: any[] = [{ id: 1, name: "vu", age: 20 }];
   return (
@@ -13,4 +11,4 @@ const EmployeesList = () => {
   );
 };
 
-export default React.memo(EmployeesList);
+export default React.memo(CustomersList);

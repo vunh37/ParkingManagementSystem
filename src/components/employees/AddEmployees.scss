@@ -1,67 +1,7 @@
-label {
-    display: block;
-    margin-bottom: 10px;
+.add-employees-container {
+  .add-form {
+    .form-row {
+      margin-bottom: 15px;
+    }
   }
-  
-  input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 10px;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .add-employee-form {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin: 20px;
-    font-size: 16px;
-    width: 60%;
-  }
-  
-  .add-employee-form label {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .add-employee-form input[type="text"] {
-    padding: 5px;
-    font-size: 16px;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-    width: 100%;
-  }
-  
-  .add-employee-form button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-top: 10px;
-    cursor: pointer;
-    border-radius: 3px;
-  }
-  
-  .add-employee-form button:hover {
-    background-color: #3e8e41;
-  }
-  
-  .add-employees-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
 }

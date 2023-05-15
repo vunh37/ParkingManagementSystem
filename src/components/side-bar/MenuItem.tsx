@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import SystemDateTime from "./SystemDateTime";
 import path from "path";
 
 export interface IMenuItemProp {
   iconString: string;
   title: string;
-  isExpand: boolean;
   children: IMenuItemProp[];
   path: string;
   showMenuTitle: boolean;
@@ -14,27 +13,33 @@ export interface IMenuItemProp {
 const MenuItem: React.FC<any> = ({
   iconString,
   title,
-  isExpand,
   children,
   path,
   showMenuTitle,
 }: IMenuItemProp) => {
+  const [expand, setExpand] = useState<boolean>(false);
+
+  const handleExpand = () => {
+    setExpand(!expand);
+  };
+
   return (
     <div className="menu-item">
       <div className="menu-item-header">
         <div className="menu-icon">
           <i className={iconString}></i>
         </div>
-        {/* <p></p> */}
-        <div className="menu-title">
+        <div className="menu-title" onClick={handleExpand}>
           <a href={path}>{title}</a>
         </div>
       </div>
-      <div className="menu-item-children">
-        {children.map((item: IMenuItemProp, index: number) => {
-          return <MenuItem key={item.title + index} {...item}></MenuItem>;
-        })}
-      </div>
+      {expand && (
+        <div className="menu-item-children">
+          {children.map((item: IMenuItemProp, index: number) => {
+            return <MenuItem key={item.title + index} {...item}></MenuItem>;
+          })}
+        </div>
+      )}
     </div>
   );
 };
