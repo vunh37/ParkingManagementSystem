@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./AddEmployees.scss";
 import CustomInput from "../common/CustomInput";
 import { IEmployee } from "../constant/interfaces";
 import { useParams } from "react-router-dom";
@@ -9,7 +8,7 @@ import {
 } from "../constant/constants";
 import CustomRadioInput from "../common/CustomRadioInput";
 
-const AddEmployee = (props: any) => {
+const AddCustomer = (props: any) => {
   const { mode } = props;
 
   const { employeeId } = useParams();
@@ -24,7 +23,7 @@ const AddEmployee = (props: any) => {
   const handleSubmitForm = (e: any) => {
     e.preventDefault();
     if (Object.values(employee).some((value: string) => value === "")) {
-      alert("Vui lòng điền đầy đủ thông tin nhân viên");
+      alert("Vui lòng điền đầy đủ thông tin khách hàng");
       return;
     }
 
@@ -33,11 +32,11 @@ const AddEmployee = (props: any) => {
       return;
     }
 
-    alert("Them nhan vien thanh cong");
+    alert("Them khách hàng thanh cong");
   };
   return (
     <div className="add-employees-container">
-      <h1 className="mb-5">Thêm nhân viên</h1>
+      <h1 className="mb-5">Thêm khách hàng</h1>
       <form onSubmit={handleSubmitForm} className="add-form">
         <div className="form-row row">
           <div className="col-md-6">
@@ -80,54 +79,14 @@ const AddEmployee = (props: any) => {
           </div>
         </div>
 
-        <CustomInput
-          name="address"
-          label="Địa chỉ"
-          value={employee.address}
-          onChangeHandle={handleChange}
-          type="string"
-        />
-
-        <div className="form-row row">
-          <div className="col-md-6">
-            <div className="form-group">
-              <label htmlFor="">Cấp bậc</label>
-              <select className="form-select">
-                <option value={"Nhân viên"}>Nhân viên</option>
-                <option value={"Quản lí"}>Quản lí</option>
-              </select>
-            </div>
-          </div>
-          <div className="col-md-6">
-            <CustomInput
-              name="email"
-              label="Email"
-              value={employee.email}
-              onChangeHandle={handleChange}
-              type="string"
-            />
-          </div>
-        </div>
-
-        <div className="form-row row">
-          <div className="col-md-6">
-            <CustomInput
-              name="userName"
-              label="Tên đăng nhập"
-              value={employee.userName}
-              onChangeHandle={handleChange}
-              type="string"
-            />
-          </div>
-          <div className="col-md-6">
-            <CustomInput
-              name="password"
-              label="Password"
-              value={employee.password}
-              onChangeHandle={handleChange}
-              type="string"
-            />
-          </div>
+        <div className="form-row">
+          <CustomInput
+            name="address"
+            label="Địa chỉ"
+            value={employee.address}
+            onChangeHandle={handleChange}
+            type="string"
+          />
         </div>
 
         <div className="form-row">
@@ -142,4 +101,4 @@ const AddEmployee = (props: any) => {
   );
 };
 
-export default AddEmployee;
+export default React.memo(AddCustomer);

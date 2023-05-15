@@ -7,15 +7,17 @@ const CustomInput = ({
   onChangeHandle,
   type,
   name,
+  disable,
 }: ICustomInput) => {
   return (
-    <div className="form-group">
+    <div className="form-group form-inline">
       <label>{label}</label>
       <input
         name={name}
         type={type ? type : "text"}
         className="form-control"
         value={value}
+        disabled={disable}
         onChange={onChangeHandle}
       ></input>
     </div>

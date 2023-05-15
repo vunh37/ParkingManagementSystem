@@ -1,5 +1,4 @@
 import React from "react";
-import SystemDateTime from "./SystemDateTime";
 import MenuItem, { IMenuItemProp } from "./MenuItem";
 const MENU_ITEMS_LIST: any[] = [
   {
@@ -17,7 +16,7 @@ const MENU_ITEMS_LIST: any[] = [
         children: [],
         title: "Them nhan vien nhan vien",
         isExpand: true,
-        path: "/parking-management/employee-list",
+        path: "/parking-management/add-employee",
       },
       {
         iconString: "icon",
@@ -33,7 +32,29 @@ const MENU_ITEMS_LIST: any[] = [
   },
   {
     iconString: "fa-solid fa-user-tag",
-    children: [],
+    children: [
+      {
+        iconString: "icon",
+        children: [],
+        title: "Danh sách khách hàng",
+        isExpand: true,
+        path: "/parking-management/customer-list",
+      },
+      {
+        iconString: "icon",
+        children: [],
+        title: "Them khách hàng",
+        isExpand: true,
+        path: "/parking-management/add-customer",
+      },
+      {
+        iconString: "icon",
+        children: [],
+        title: "Cập nhập",
+        isExpand: true,
+        path: "/parking-management/customer",
+      },
+    ],
     title: "quản lí khách hàng",
     isExpand: true,
   },
@@ -42,10 +63,26 @@ const MENU_ITEMS_LIST: any[] = [
     children: [],
     title: "quản lí xe ra/vào",
     isExpand: true,
+    path: "/parking-management/parking",
   },
   {
     iconString: "fa-solid fa-file-invoice-dollar",
-    children: [],
+    children: [
+      {
+        iconString: "icon",
+        children: [],
+        title: "Bán/Gia Hạn vé",
+        isExpand: true,
+        path: "/parking-management/sell-ticket",
+      },
+      {
+        iconString: "icon",
+        children: [],
+        title: "Danh sách vé",
+        isExpand: true,
+        path: "/parking-management/add-customer",
+      },
+    ],
     title: "quản lí thu chi",
     isExpand: true,
   },
@@ -54,6 +91,7 @@ const MENU_ITEMS_LIST: any[] = [
     children: [],
     title: "thống kê",
     isExpand: true,
+    path: "/parking-management/statistic",
   },
 ];
 
