@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Login.scss";
 import CustomInput from "../common/CustomInput";
 import { ILoginInfor } from "../constant/interfaces";
@@ -7,8 +7,10 @@ import {
   REGEX_LOGIN_USER_NAME,
 } from "../constant/constants";
 import { userInfo } from "os";
+import { AuthenContext } from "../context/AuthenContext";
 
-const Login = (props: any) => {
+const Login = () => {
+  const { onLogin } = useContext(AuthenContext);
   const [loginInfor, setLoginInfor] = useState<ILoginInfor>({
     ...LOGIN_INFOR_DEFAULT,
   });
@@ -28,6 +30,9 @@ const Login = (props: any) => {
     if (!REGEX_LOGIN_USER_NAME.test(userName)) {
       alert("Tên không được chứa kí tự đặc biệt!");
       return;
+    }
+    if (onLogin) {
+      onLogin(userName, password);
     }
   };
 

@@ -10,11 +10,16 @@ import AddCustomer from "../components/customer/AddCustomer";
 import Parking from "../components/parking/Parking";
 import SellTicket from "../components/ticket/SellTicket";
 import Staticstic from "../components/staticstic/Staticstic";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   {
     path: "/parking-management",
-    element: <RootComponent />,
+    element: (
+      <ProtectedRoute>
+        <RootComponent />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "user-management",
@@ -56,7 +61,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Login onLogin={(username: string, password: string) => {}} />,
+    element: <Login />,
   },
 ]);
 
