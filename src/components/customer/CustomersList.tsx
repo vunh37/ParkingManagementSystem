@@ -6,7 +6,12 @@ const CustomersList = () => {
   const data: any[] = [{ id: 1, name: "vu", age: 20 }];
   return (
     <div>
-      <CustomTable headers={header} data={data} />
+      <CustomTable
+        headers={header}
+        data={data}
+        deleteFunction={() => {}}
+        showFunction={() => {}}
+      />
     </div>
   );
 };

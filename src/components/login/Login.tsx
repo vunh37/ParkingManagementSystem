@@ -8,9 +8,11 @@ import {
 } from "../constant/constants";
 import { userInfo } from "os";
 import { AuthenContext } from "../context/AuthenContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { onLogin } = useContext(AuthenContext);
+  const navigate = useNavigate();
   const [loginInfor, setLoginInfor] = useState<ILoginInfor>({
     ...LOGIN_INFOR_DEFAULT,
   });
@@ -18,7 +20,7 @@ const Login = () => {
     ...LOGIN_INFOR_DEFAULT,
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const errorMsg: ILoginInfor = { userName: "", password: "" };
     const { userName, password } = loginInfor;
@@ -32,7 +34,13 @@ const Login = () => {
       return;
     }
     if (onLogin) {
-      onLogin(userName, password);
+      const result = await onLogin(userName, password);
+      if (result) {
+        alert("Đăng nhập thành công");
+        navigate("/parking-management");
+      } else {
+        alert("Đăng nhập thất bại");
+      }
     }
   };
 

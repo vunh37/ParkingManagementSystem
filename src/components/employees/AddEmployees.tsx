@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./AddEmployees.scss";
 import CustomInput from "../common/CustomInput";
-import { IEmployee } from "../constant/interfaces";
+import { IEmployee, IRole } from "../constant/interfaces";
 import { useParams } from "react-router-dom";
 import {
+  EMPLOYEE_API,
   EMPLOYEE_DEFAULT,
   REGEX_CHECK_PHONE_NUMBER,
+  ROLE_API,
 } from "../constant/constants";
 import CustomRadioInput from "../common/CustomRadioInput";
+import fetchApi from "../constant/util";
 
 const AddEmployee = (props: any) => {
   const { mode } = props;
@@ -15,11 +18,28 @@ const AddEmployee = (props: any) => {
   const { employeeId } = useParams();
 
   const [employee, setEmployee] = useState<IEmployee>({ ...EMPLOYEE_DEFAULT });
-
+  const [listRole, setListRole] = useState<any[]>([]);
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setEmployee({ ...employee, [name]: value });
   };
+
+  useEffect(() => {
+    if (mode === "add") return;
+    const fetchEmployee = async () => {
+      const result = await fetchApi(`${EMPLOYEE_API.GET}/${employeeId}`);
+      console.log(result);
+    };
+    fetchEmployee();
+  }, []);
+
+  useEffect(() => {
+    const fetchListRole = async () => {
+      const result = await fetchApi(ROLE_API.LIST);
+      setListRole([...result]);
+    };
+    fetchListRole();
+  }, []);
 
   const handleSubmitForm = (e: any) => {
     e.preventDefault();
@@ -32,6 +52,12 @@ const AddEmployee = (props: any) => {
       alert("Vui lòng điền chính xác số điện thoại");
       return;
     }
+
+    fetch(EMPLOYEE_API.ADD, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...employee }),
+    });
 
     alert("Them nhan vien thanh cong");
   };
@@ -92,9 +118,15 @@ const AddEmployee = (props: any) => {
           <div className="col-md-6">
             <div className="form-group">
               <label htmlFor="">Cấp bậc</label>
-              <select className="form-select">
-                <option value={"Nhân viên"}>Nhân viên</option>
-                <option value={"Quản lí"}>Quản lí</option>
+              <select
+                className="form-select"
+                value={employee.roleID}
+                name="roleID"
+                onChange={handleChange}
+              >
+                {listRole.map((item: any, index: number) => {
+                  return <option value={item[0]}>{item[1]}</option>;
+                })}
               </select>
             </div>
           </div>
