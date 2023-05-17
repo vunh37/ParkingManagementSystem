@@ -18,8 +18,8 @@ export interface ICustomRadioInput {
 export interface ICustomTable {
   headers: string[];
   data: any[];
-  deleteFunction?: (id: number) => void;
-  showFunction?: (id: number) => void;
+  deleteFunction: (id: number) => void;
+  showFunction: (id: number) => void;
   editFunction?: (id: number) => void;
 }
 
@@ -42,6 +42,11 @@ export interface IEmployee {
   phoneNumber: string;
   password: string;
   fullName: string;
+  roleID: number;
+}
+
+export interface IRole {
+  roleID: number;
   roleName: string;
 }
 

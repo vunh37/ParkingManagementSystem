@@ -14,7 +14,7 @@ const MENU_ITEMS_LIST: any[] = [
       {
         iconString: "icon",
         children: [],
-        title: "Them nhan vien nhan vien",
+        title: "Thêm nhân viên",
         isExpand: true,
         path: "/parking-management/add-employee",
       },

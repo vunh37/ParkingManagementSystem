@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { USER_INFO_KEY } from "../constant/constants";
+import React, { useState } from "react";
+import { LOGIN_API_URL, USER_INFO_KEY } from "../constant/constants";
 
 interface IAuthenContext {
   userID: number;
   userName: string;
-  onLogin?: (userName: string, password: string) => void;
+  onLogin?: (userName: string, password: string) => any;
   onLogOut?: () => void;
 }
 
@@ -33,32 +33,27 @@ export const App = (props: any) => {
   const [userInfo, setUserInfor] = useState<IAuthenContext>(
     getUserIdFromLocalStorage()
   );
-  const onLogin = (userName: string, password: string) => {
-    if (userName == "vu" && password == "123") {
-      alert("login thanh cong");
-      localStorage.setItem(
-        USER_INFO_KEY,
-        JSON.stringify({ userID: 1, userName: "v" })
-      );
-      setUserInfor({ userName: userName, userID: 1 });
+  const onLogin = async (userName: string, password: string) => {
+    try {
+      const response = await fetch(LOGIN_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userName: userName.trim(),
+          password: password.trim(),
+        }),
+      });
+      const jsonData = await response.json();
+      localStorage.setItem(USER_INFO_KEY, JSON.stringify({ ...jsonData }));
+      return true;
+    } catch (error) {
+      return false;
     }
   };
 
   const onLogOut = () => {
     setUserInfor({ ...userInfo, userID: -1 });
   };
-
-  // useEffect(() => {
-  //   try {
-  //     const userInfor: any = JSON.parse(
-  //       localStorage.getItem(USER_INFO_KEY) || ""
-  //     );
-  //     if (userInfor) {
-  //       setUserID(userInfor?.userI);
-  //       setUserName(userInfor?.userName);
-  //     }
-  //   } catch (error) {}
-  // }, []);
 
   const valueContext: IAuthenContext = {
     userID: userInfo.userID,
